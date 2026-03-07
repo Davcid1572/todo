@@ -31,6 +31,7 @@ const index = () => {
     setTodos((currTodo) => {
       return currTodo.filter((todo) => todo.id !== id);
     });
+    console.log(todos);
   }
 
   return (
@@ -59,6 +60,7 @@ const index = () => {
 
         <h1 className="font-bold mb-2">TODO LIST</h1>
         <ul>
+          {todos.length === 0 && "No Todos"}
           {todos.map((todo) => (
             <li key={todo.id} className="mb-4">
               <label>
