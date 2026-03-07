@@ -1,11 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Form from "@/component/common/Form";
 import List from "@/component/common/List";
 
 const index = () => {
   const [todos, setTodos] = useState<
     { id: string; title: string; completed: boolean }[]
-  >([]);
+  >(() => {
+    const localValue = localStorage.getItem("ITEMS");
+    if (localValue === null) return [];
+    return JSON.parse(localValue);
+  });
+
+  useEffect(() => {
+    localStorage.setItem("ITEMS", JSON.stringify(todos));
+  }, [todos]);
 
   function addTodo(title: string) {
     setTodos((currTodo) => [
