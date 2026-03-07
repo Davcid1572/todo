@@ -27,6 +27,12 @@ const index = () => {
     });
   }
 
+  function deleteTodo(id: string) {
+    setTodos((currTodo) => {
+      return currTodo.filter((todo) => todo.id !== id);
+    });
+  }
+
   return (
     <div className="bg-gray-800 h-screen p-8 text-white">
       <div className="max-w-md mx-auto">
@@ -64,7 +70,12 @@ const index = () => {
                 />
                 {todo.title}
               </label>
-              <button className="border ml-2 border-red-600 text-red-600 p-2 font-bold rounded-md hover:text-white hover:bg-red-600">
+              <button
+                onClick={() => {
+                  deleteTodo(todo.id);
+                }}
+                className="border ml-2 border-red-600 text-red-600 p-2 font-bold rounded-md hover:text-white hover:bg-red-600"
+              >
                 Delete
               </button>
             </li>
